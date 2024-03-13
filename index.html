@@ -1,20 +1,171 @@
-<!--index.html-->
-
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap 5 CSS -->
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">        <!-- Your custom CSS -->
+        <link rel="stylesheet"  href="./CSS/login.css">
+        <!-- Your custom JavaScript -->
+        <title>RES</title>
+    </head>
+    
+    <style>
+        
+    </style>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop id="video-background">
+            <source src="./Media/Hotel2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+<main class="main">
+    
+    <div class="container" id="login-page">
+        <br>
+        <h1> RES Login</h1>
+        <p>Join us as we revolutionize the hotel reservation experience.</p>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-  </body>
+        <form id="loginForm" onsubmit="return validateLogin()">  
+
+            <div class="mb-3">
+                <label for="exampleInputName1" class="form-label">Username</label>
+                <input type="text" id="uname">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" id="loginPassword">
+            </div>
+
+            <div class="form-check-label">
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                <input type="checkbox" class="form-check-input">   
+            </div>
+
+            <div class="no-account">
+                <p>Don't have an account?<a href="#" onclick ="togglevalidateRegistration()"> Sign up</a></p> <!--function is called when the "Sign up" link is clicked.
+                     It hides the login form and shows the registration form-->
+            </div>
+           <br>
+            <div class="login-container">
+            <button type="submit" class="login">Login</button>
+            <div class="password"><a href="#">Forgot password?</a></div>
+            </div>
+        </form>
+      </div>
+
+    <div class="container2" id="registration-page" style="display: none;"> <!--The style="display: none;" be hides the login when the page loads. This container is used to hold the
+         registration form, and it will only be displayed when the user clicks on the "Sign up" link in the login form.-->
+        <h1>Register</h1>
+
+        <form id="registerForm" onsubmit="return validateRegistration(event)"> <!--function is called when the registration form is submitted. It checks if all fields are
+             filled, if the password is at least 6 characters long, and if the password and confirm password fields match. If the validation passes, a success message is displayed, 
+             and the user is redirected to a login and registration page.-->
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name</label>
+                <input type="text" class="form-control" id="registerName">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                <input type="email" class="form-control" id="registerEmail">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="registerPassword">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword">
+            </div>
+
+            <div class="login-container">
+                <button type="submit" class="login">Register</button>
+                <button type="submit" class="login" onclick="redirectToAnotherPage()">Cancel</button>
+            </div>
+            
+        </form>
+    </div>
+
+</main>
+
+<script>
+    function validateLogin() {
+        var uname = document.getElementById("uname").value;
+        var password = document.getElementById("loginPassword").value;
+    
+        if (uname === "") {
+            alert("Enter username");
+            return false;
+        }
+    
+        if (password === "") {
+            alert("Enter password");
+            return false;
+        }
+    
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters");
+            return false;
+        }
+    
+        alert("Welcome to Hotel RES")
+        sessionStorage.setItem('isLoggedIn', true);
+        window.location.href = 'Special.html';
+        return false;
+    }
+    
+    function togglevalidateRegistration() {
+        document.getElementById("login-page").style.display = "none";
+        document.getElementById("registration-page").style.display = "block";
+    }
+    
+    function redirectToAnotherPage() {
+        window.location.href = 'login.html'; // Replace 'your_other_page_url.html' with the URL of the page you want to redirect to
+    }
+
+    function validateRegistration(e) {
+        if (document.getElementById("registerName").value === '' &&
+            document.getElementById("registerEmail").value === '' &&
+            document.getElementById("registerPassword").value === '' &&
+            document.getElementById("confirmPassword").value === '') {
+            window.location.href = "login.html"; // Redirect to login page if all fields are empty
+            return false;
+        }
+
+        e.preventDefault(); // Prevent submit
+    
+        var name = document.getElementById("registerName").value;
+        var email = document.getElementById("registerEmail").value;
+        var password = document.getElementById("registerPassword").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+    
+        if (name === '' || email === '' || password === '' || confirmPassword === '') {
+            alert("Please fill out all fields");
+            return false;
+        }
+    
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters");
+            return false;
+        }
+    
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return false;
+        }
+    
+        alert("Successfully registered new user: " + name);
+        window.location.href = "login.html";
+    };
+    </script>
+    
+
+</body>
+
 </html>

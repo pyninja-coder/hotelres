@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container{
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    border: 5px solid;
+    animation: animateBorder 8s linear infinite;
+    
+}
+
+.container h1, p{
+    text-align: center;
+    padding: 20px;
+}
+.container form{
+    padding: 40px;
+}
+
+form .mb-3{
+    position: relative;
+    border-bottom: 2px solid white;
+    margin: 30px;
+}
+
+.mb-3 input{
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    color: rgb(241, 244, 246);/*form color*/
+}
+
+.input label{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    color: aliceblue;
+    transform: translate(-50%);
+    font-size: 16px;
+}
+
+.main{
+    background-color: aliceblue;
+    height: 100vh;
+}
+
+.no-account a {
+    color: yellow;
+}
+
+/* Change color for "Forgot password?" */
+.password a {
+    color: yellow;
+}
+
+.container2{
+    display: none;
+}
+.login-container {
+    text-align: center;
+}
+
+.password {
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+.login{
+    width: 100px;
+    height: 30px;
+}
+
+@keyframes animateBorder {
+    0% {
+      border-color: white; 
+    }
+    25% {
+      border-color: rgb(255, 217, 0);
+    }
+    50% {
+      border-color: rgb(217, 255, 0);
+    }
+    75% {
+      border-color: rgb(255, 217, 0);
+    }
+    100% {
+      border-color: white;
+    }
+}
+
+.container2{
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 650px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    border: 5px solid;
+    animation: animateBorder 8s linear infinite;
+}
+
+.container2 h1{
+    text-align: center;
+    padding: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#video-background {
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+}
+
